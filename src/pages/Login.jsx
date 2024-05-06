@@ -1,6 +1,7 @@
 import React from 'react'
 import logo from '@assets/logo.png'
 import login from '@assets/login.jpg'
+import {Link} from 'react-router-dom'
 import { FormLabel, FormInput, FormButton } from '@components/Form.jsx';
 
 function Login({className}) {
@@ -37,7 +38,7 @@ function Login({className}) {
                                 </div>                                
                                 <FormButton name="Login" />
                                 <br />
-                                <p className="mt-4 text-xs text-left text-gray-500">Not a member? <a href="#" className="text-blue-500">Register</a></p>
+                                <p className="mt-4 text-xs text-left text-gray-500">Not a member? <Link to="/signup" className="text-blue-500">Register</Link></p>
                                 <br />
                                 <br />
                                 <br />

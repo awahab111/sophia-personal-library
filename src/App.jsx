@@ -1,12 +1,17 @@
 import { useState } from 'react'
-import viteLogo from '/vite.svg'
+import Signup from '@pages/Signup.jsx'
+import Login from '@pages/Login.jsx'
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <p className="text-red-500 text-center text-bold">hjsdfgbhjklsdgfikushdgfiusghdf</p>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login/>} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </BrowserRouter>
     </>
   )
 }

@@ -1,9 +1,18 @@
 import React from 'react'
 import dio from '@assets/dio.jpg'
 import logo from '@assets/logo.png'
+import {Link} from 'react-router-dom'
 import { FormLabel, FormInput, FormButton } from '@components/Form.jsx';
 
 function Signup({className}) {
+
+    const handleSubmission = (e) => {
+        e.preventDefault();
+        //extract values from form
+        
+
+    }
+
     return (
         // Not responsive :(
         <div className="flex items-center min-h-screen bg-off-white">
@@ -19,7 +28,7 @@ function Signup({className}) {
                                 Registration
                             </h1>
                             <p className="text-[12px] text-center text-gray-500 mb-4">Sign up to create your own Digital Library</p>
-                            <form>
+                            <form onSubmit={handleSubmission}>
                                 <FormLabel name="First Name" />
                                 <FormInput name="first_name" type="text" />
 
@@ -36,7 +45,7 @@ function Signup({className}) {
                                 <FormInput name="confirm_password" type="password" />
 
                                 <FormButton name="Register" />
-                                <p className="mt-4 text-xs text-left text-gray-500">Already a member? <a href="#" className="text-blue-500">Login</a></p>
+                                <p className="mt-4 text-xs text-left text-gray-500">Already a member? <Link to="/" className="text-blue-500">Login</Link></p>
                             </form>
                         </div>
                     </div>

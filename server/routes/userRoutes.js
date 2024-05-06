@@ -10,4 +10,8 @@ const User = require('../models/User');
 //   res.json(users);
 // });
 
+router.post('/signup', async(req, res) => {
+    
+})
+
 module.exports = router;
