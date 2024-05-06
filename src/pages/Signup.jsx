@@ -2,15 +2,39 @@ import React from 'react'
 import dio from '@assets/dio.jpg'
 import logo from '@assets/logo.png'
 import {Link} from 'react-router-dom'
+import axios from 'axios'
 import { FormLabel, FormInput, FormButton } from '@components/Form.jsx';
+
+axios.defaults.baseURL = 'http://localhost:7000';
 
 function Signup({className}) {
 
     const handleSubmission = (e) => {
         e.preventDefault();
-        //extract values from form
-        
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries());
 
+        if (data.password !== data.confirm_password) {
+            alert("Passwords do not match");
+            return;
+        }
+
+        const fullname = `${data.first_name} ${data.last_name}`;
+        const user = {
+            fullname: fullname,
+            email: data.email,
+            password: data.password
+        };
+
+        axios.post('/signup', user)
+            .then((res) => {
+                console.log(res.data);
+                alert("Signup successful!");
+            })
+            .catch((error) => {
+                console.error(error);
+                alert(error.response.data.message);
+            });
     }
 
     return (

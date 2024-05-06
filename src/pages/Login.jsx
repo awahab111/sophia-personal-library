@@ -2,9 +2,27 @@ import React from 'react'
 import logo from '@assets/logo.png'
 import login from '@assets/login.jpg'
 import {Link} from 'react-router-dom'
+import axios from 'axios'
 import { FormLabel, FormInput, FormButton } from '@components/Form.jsx';
 
 function Login({className}) {
+
+    const handleSubmission = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries());
+
+        axios.post('/login', data)
+            .then((res) => {
+                console.log(res.data);
+                alert("Login successful!");
+            })
+            .catch((error) => {
+                console.error(error);
+                alert(error.response.data.message);
+            });
+    }
+
     return (
         // Not responsive :(
         <div className="flex items-center min-h-screen bg-off-white">
@@ -21,7 +39,7 @@ function Login({className}) {
                             </h1>
                             <p className="text-[12px] text-center text-gray-500 mb-4">Sign in to continue to your Digital Library</p>
                             <br />
-                            <form>
+                            <form onSubmit={handleSubmission}>
 
                                 <FormLabel name="Email" />
                                 <FormInput name="email" type="email" />
@@ -39,9 +57,7 @@ function Login({className}) {
                                 <FormButton name="Login" />
                                 <br />
                                 <p className="mt-4 text-xs text-left text-gray-500">Not a member? <Link to="/signup" className="text-blue-500">Register</Link></p>
-                                <br />
-                                <br />
-                                <br />
+                                <div style={{ marginBottom: '3em' }}></div>
                             </form>
                         </div>
                     </div>
