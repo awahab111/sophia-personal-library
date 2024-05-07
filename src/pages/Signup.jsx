@@ -3,9 +3,10 @@ import dio from '@assets/dio.jpg'
 import logo from '@assets/logo.png'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import { toast } from 'react-hot-toast';
 import { FormLabel, FormInput, FormButton } from '@components/Form.jsx';
 
-axios.defaults.baseURL = 'http://localhost:7000';
+
 
 function Signup({className}) {
 
@@ -29,11 +30,11 @@ function Signup({className}) {
         axios.post('/signup', user)
             .then((res) => {
                 console.log(res.data);
-                alert("Signup successful!");
+                toast.success("Registration successful!");
             })
             .catch((error) => {
                 console.error(error);
-                alert(error.response.data.message);
+                toast.error(error.response.data.message);
             });
     }
 

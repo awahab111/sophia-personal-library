@@ -3,6 +3,7 @@ import logo from '@assets/logo.png'
 import login from '@assets/login.jpg'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import { toast } from 'react-hot-toast';
 import { FormLabel, FormInput, FormButton } from '@components/Form.jsx';
 
 function Login({className}) {
@@ -15,16 +16,17 @@ function Login({className}) {
         axios.post('/login', data)
             .then((res) => {
                 console.log(res.data);
-                alert("Login successful!");
+                toast.success("Login successful!");
             })
             .catch((error) => {
                 console.error(error);
-                alert(error.response.data.message);
+                toast.error(error.response.data.message);
+                
             });
     }
 
     return (
-        // Not responsive :(
+        <>
         <div className="flex items-center min-h-screen bg-off-white">
             <div className="flex-1 h-full max-w-4xl mx-auto bg-white shadow-xl rounded-[25px]">
                 <div className="flex flex-col md:flex-row">
@@ -64,6 +66,7 @@ function Login({className}) {
                 </div>
             </div>
         </div>
+        </>
     );
 }
 
