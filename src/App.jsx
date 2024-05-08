@@ -1,5 +1,6 @@
 import Signup from '@pages/Signup.jsx'
 import Login from '@pages/Login.jsx'
+import Welcome from '@pages/Welcome.jsx'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import { Toaster } from 'react-hot-toast';
 import axios from 'axios';
@@ -11,14 +12,15 @@ function App() {
   return (
     <>
     <div><Toaster/></div>
-    {/* <BrowserRouter>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login/>} />
         <Route path="/signup" element={<Signup />} />
+        <Route path='/main' element= {<Welcome />} />
       </Routes>
-    </BrowserRouter> */}
+    </BrowserRouter>
 
-      <MainFrame/>
+      {/* <Welcome/> */}
 
     </>
   )
