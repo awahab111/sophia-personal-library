@@ -6,6 +6,9 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      digital: ["DS-Digital", "sans-serif"]
+    },
     extend: {
       colors: {
         'off-white': '#F3F3F7',

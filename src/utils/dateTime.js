@@ -7,7 +7,7 @@ function getCurrentDate() {
 
 function getCurrentTime() {
     const currentTime = new Date();
-    const options = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
+    const options = { hour: 'numeric', minute: 'numeric'};
     const formattedTime = currentTime.toLocaleTimeString('en-US', options).toString();
     return formattedTime;
 }

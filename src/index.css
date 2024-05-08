@@ -5,3 +5,8 @@
 .iconStyle { 
     @apply p-3 text-[#8A8A8A] text-[28px] my-3;
   }
+
+@font-face {
+    font-family: "DS-Digital";
+    src: url("../public/font/DS-DIGIT.TTF");
+  }
