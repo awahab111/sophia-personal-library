@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .iconStyle { 
-    @apply p-3 text-[#8A8A8A] text-[28px] my-3;
+    @apply p-3 text-[#8A8A8A] text-[20px] lg:text-[28px] my-3;
   }
 
 @font-face {

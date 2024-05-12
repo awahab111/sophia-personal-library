@@ -1,19 +1,42 @@
 import logo from '@assets/logo.png'
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Profile from './Profile';
+import { useEffect } from 'react';
 
 function Navigation(){
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  console.log(windowWidth);
-  return (
-    <div className='w-1/12 h-full my-auto bg-[#E2DCCB] rounded-[25px] flex flex-col text-xl ml-2'>
-      <Link to='/main'><img className="mx-auto w-[50%] mt-10 mb-10" src={logo} alt="Logo" /></Link>
 
-      <ul className={`flex flex-col justify-center items-center }`}>
-        <li><i className={`fas fa-home iconStyle `}></i></li>
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const profile = {
+    pp: "https://letsenhance.io/static/66c1b6abf8f7cf44c19185254d7adb0c/28ebd/AiArtBefore.jpg",
+  };
+
+  return (
+    <div className='h-[60px] w-[99%] lg:w-1/12 lg:h-full lg:my-auto mt-2 bg-[#E2DCCB] rounded-[15px] flex flex-row lg:flex-col items-center text-xl lg:ml-2 order-2 lg:order-none'>
+      <Link to='/main'><img className="ml-5 my-auto w-[32px] lg:w-[50%] lg:my-10" src={logo} alt="Logo" /></Link>
+  
+      <ul className={`flex flex-row lg:flex-col items-center mx-auto space-x-8 lg:space-x-0`}>
+        <li><i className={`fas fa-home iconStyle`}></i></li>
         <li><i className={`fas fa-info-circle iconStyle`}></i></li>
         <li><i className={`fas fa-envelope iconStyle`}></i></li>
       </ul>
+      {windowWidth <= 1024 && 
+        <div className='mr-5 ring-2 rounded-full ring-[#AEBCDA] '>
+          <Profile />
+        </div>
+      }
     </div>
   );
 }

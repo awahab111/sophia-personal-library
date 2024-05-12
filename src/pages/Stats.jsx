@@ -1,4 +1,4 @@
-function Quotes({quote, author}) {
+function Stats({quote, author}) {
 
     quote = "Amogus Amogus Amogus";
     author = "me";
@@ -13,4 +13,4 @@ function Quotes({quote, author}) {
   );
 }
 
-export default Quotes;
+export default Stats;

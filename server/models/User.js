@@ -5,14 +5,14 @@ const userSchema = new mongoose.Schema({
   fullname: String,
   email: String,
   password: String,
-  profile_pic:Image
+  // profile_pic:Image
 });
 
 const bookSchema = new mongoose.Schema({
   title: String,
   author: String,
   date: Date,
-  cover: Image
+  // cover: Image
 });
 
 
