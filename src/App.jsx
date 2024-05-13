@@ -5,6 +5,7 @@ import MyShelf from '@/pages/My Shelf/MyShelf.jsx'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import { Toaster } from 'react-hot-toast';
 import axios from 'axios';
+import { useUserStore } from './components/zuStore'
 // import MainFrame from '@components/MainFrame';
 import '@fortawesome/fontawesome-free/css/all.css';
 
@@ -17,10 +18,10 @@ function App() {
     <div><Toaster/></div>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login/>} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path='/main' element= {<Welcome />} />
-        <Route path='/myshelf' element= {<MyShelf />} />
+          <Route path="/" element={<Login/>} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path='/main' element= {<Welcome />} />
+          <Route path='/myshelf' element= {<MyShelf />} />
       </Routes>
     </BrowserRouter>
 
