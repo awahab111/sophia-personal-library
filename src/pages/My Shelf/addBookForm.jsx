@@ -16,7 +16,6 @@ function AddBook(){
         e.preventDefault();
         console.log('Title:', title);
         console.log('Author:', author);
-        // Add your logic to add the book
     };
 
     return(

@@ -31,7 +31,7 @@ function MyShelf() {
 
     return (
         <MainPage>
-            <div className="flex">
+            <div className="flex mt-2">
                 <Button text="Upload books" onClick={handleUploadClick}/>
             </div>
             {showForm && (
