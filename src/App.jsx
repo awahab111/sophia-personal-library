@@ -1,6 +1,7 @@
 import Signup from '@pages/Signup.jsx'
 import Login from '@pages/Login.jsx'
-import Welcome from '@pages/Welcome.jsx'
+import Welcome from '@/pages/Welcome/Welcome.jsx'
+import MyShelf from '@/pages/My Shelf/MyShelf.jsx'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import { Toaster } from 'react-hot-toast';
 import axios from 'axios';
@@ -21,7 +22,9 @@ function App() {
         <Route path="/" element={<Login/>} />
         <Route path="/signup" element={<Signup />} />
         <Route path='/main' element= {<Welcome />} />
+        <Route path='/myshelf' element= {<MyShelf />} />
         <Route path='/view' element= {<PDFViewer url='https://www.pdf995.com/samples/pdf.pdf'/>} />
+
       </Routes>
     </BrowserRouter>
 
