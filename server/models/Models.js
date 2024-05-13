@@ -8,10 +8,12 @@ const userSchema = new mongoose.Schema({
   fullname: String,
   email: String,
   password: String,
-  profile_pic:String
+  profile_pic:String,
+  books: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Book' }]
 });
 
 const bookSchema = new mongoose.Schema({
+  id: Number,
   title: String,
   author: String,
   pages: Number,

@@ -1,5 +1,5 @@
 function IconButton({ icon }) {
-  return <i className={`fas fa-${icon} iconstyle hover:bg-white`} />;
+  return <i className={`fas fa-${icon} iconstyle hover:bg-white space-x-0`} />;
 }
 
 export default IconButton;
