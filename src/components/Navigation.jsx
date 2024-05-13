@@ -24,7 +24,7 @@ function Navigation(){
   };
 
   return (
-    <div className='h-[60px] w-[99%] lg:w-1/12 lg:h-full lg:my-auto mt-2 bg-[#E2DCCB] rounded-[15px] flex flex-row lg:flex-col items-center text-xl lg:ml-2 order-2 lg:order-none'>
+    <div className='h-[60px] w-[99%] lg:w-1/12 lg:h-full lg:my-auto mt-2 bg-[#E2DCCB] rounded-[15px] lg:rounded-[25px] flex flex-row lg:flex-col items-center text-xl lg:ml-2 order-2 lg:order-none'>
       
       <Link to='/main'><img className="mx-4 lg:mx-auto my-auto w-[32px] lg:w-[50%] lg:my-10" src={logo} alt="Logo" /></Link>
       <ul className={`flex flex-row items-center justify-center lg:flex-col mx-auto  lg:space-x-0`}>

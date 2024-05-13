@@ -42,12 +42,14 @@ function Welcome() {
           <DateTime />
           {windowWidth >= 1024 && <Profile />}
         </div>
-        <div className="flex flex-col gap-5">
-          <div className='flex flex-wrap gap-5' >
+        <div className="flex flex-col gap-8">
+          <br />
+          <div className='flex flex-wrap justify-center ' >
             <Quotes />
+            <div className='w-[1%]' ></div> {/*this is a spacer*/}
             <Stats/>
           </div>
-
+          <br />
           <h1 className=" font-semibold text-[30px] text-gray-700 font-mono ml-1 " >Welcome Back Abdul Wahab</h1>
           <h2 className='text-[20px] ml-2 ' > Currently Reading</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex lg:flex-wrap sm:gap-x-5 gap-y-4 mx-1">
