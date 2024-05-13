@@ -8,12 +8,27 @@ import Profile from "@/components/Profile";
 import Stats from "@/pages/Welcome/Stats";
 import Quote from 'inspirational-quotes';
 import MainPage from '../MainPage';
+import pdf from '/pdc.pdf';
+import 'pdfjs-viewer-element';
+import {useNavigate} from 'react-router-dom';
+import { useUserStore} from '@components/zuStore'
+import Loading from 'react-fullscreen-loading';
+
 
 
 function Welcome() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const user = useUserStore(state => state.user);
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    if (!user) {
+      navigate('/');
+    } else {
+      setIsLoading(false);
+    }
+
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
@@ -24,6 +39,10 @@ function Welcome() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  if (isLoading) {
+    return <Loading loading background="#F3F3F7" loaderColor="#f89f76"/>;
+  }
 
   var quote_obj = Quote.getQuote({author: true});
   var random = Quote.getRandomQuote();

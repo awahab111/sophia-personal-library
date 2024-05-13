@@ -5,10 +5,26 @@ import {Link} from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-hot-toast';
 import { FormLabel, FormInput, FormButton } from '@components/Form.jsx';
-
+import { useEffect, useState } from 'react'
+import { useUserStore} from '@components/zuStore'
+import { useNavigate, } from 'react-router-dom';
+import Loading from 'react-fullscreen-loading';
 
 
 function Signup({className}) {
+    const redirect = useNavigate();
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const user = useUserStore.getState().user;
+        if (user) {
+            redirect('/main');
+        }
+        else {
+            setIsLoading(false);
+        }
+    }
+    , []);
 
     const handleSubmission = (e) => {
         e.preventDefault();
@@ -36,6 +52,10 @@ function Signup({className}) {
                 console.error(error);
                 toast.error(error.response.data.message);
             });
+    }
+
+    if (isLoading) {
+        return <Loading loading background="#F3F3F7" loaderColor="#f89f76"/>;
     }
 
     return (

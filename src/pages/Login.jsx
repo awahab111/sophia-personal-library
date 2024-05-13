@@ -1,12 +1,28 @@
 import React from 'react'
 import logo from '@assets/logo.png'
 import login from '@assets/login.jpg'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-hot-toast';
 import { FormLabel, FormInput, FormButton } from '@components/Form.jsx';
+import { useUserStore} from '@components/zuStore'
+import { useEffect, useState } from 'react'
+import Loading from 'react-fullscreen-loading';
 
 function Login({className}) {
+   
+    const redirect = useNavigate();
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const user = useUserStore.getState().user;
+        if (user) {
+            redirect('/main');
+        } else {
+            setIsLoading(false);
+        }
+    }
+    , []);
 
     const handleSubmission = (e) => {
         e.preventDefault();
@@ -16,7 +32,10 @@ function Login({className}) {
         axios.post('/login', data)
             .then((res) => {
                 console.log(res.data);
-                toast.success("Login successful!");
+                useUserStore.setState({ user: res.data });
+                toast.success("Login successful!"); 
+                //redirect to main
+                redirect('/main');
             })
             .catch((error) => {
                 console.error(error);
@@ -24,6 +43,11 @@ function Login({className}) {
                 
             });
     }
+
+    if (isLoading) {
+        return <Loading loading background="#F3F3F7" loaderColor="#f89f76"/>;
+    }
+
 
     return (
         <>
