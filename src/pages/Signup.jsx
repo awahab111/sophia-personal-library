@@ -39,7 +39,6 @@ function Signup({className}) {
     }
 
     return (
-        // Not responsive :(
         <div className="flex items-center min-h-screen bg-off-white">
             <div className="flex-1 h-full max-w-4xl mx-auto bg-white shadow-xl rounded-[25px]">
                 <div className="flex flex-col md:flex-row">
