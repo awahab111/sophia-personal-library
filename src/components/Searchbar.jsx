@@ -1,17 +1,15 @@
+import { Dropdown } from "flowbite-react";
+
 function Searchbar() {
   return (
-    <div className="relative flex w-[100%] lg:w-[55%] bg-white my-4 rounded-[25px] shadow-md">
-      <div className="flex w-[0] lg:w-[18%] lg:bg-[#AEBCDA] rounded-l-[25px]">
-        <select
-            className="mx-auto my-auto rounded-l-[25px] lg:bg-[#AEBCDA] text-center focus:outline-0"
-            style={{ 
-              padding: "10px",
-            }}
-          >   
-            <option value="option1">All</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
-          </select>
+    <div className="relative h-[50px] flex w-[100%] lg:w-[55%] bg-white my-4 rounded-[25px] shadow-md">
+      <div className="hidden lg:flex w-[0] lg:w-[18%] lg:bg-[#AEBCDA] rounded-l-[25px] justify-center items-center">
+        <Dropdown label="Options" className="" inline>
+          <Dropdown.Item className="hover:bg-[#AEBCDA]">All</Dropdown.Item>
+          <Dropdown.Item className="hover:bg-[#AEBCDA]">Books</Dropdown.Item>
+          <Dropdown.Item className="hover:bg-[#AEBCDA]">Authors</Dropdown.Item>
+          <Dropdown.Item className="hover:bg-[#AEBCDA]">Genres</Dropdown.Item>
+        </Dropdown>
       </div>
       <input
         className="w-[90%] lg:w-[75%] lg:h-[90%] my-auto mx-auto ml-2 focus:outline-0"

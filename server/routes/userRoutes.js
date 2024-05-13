@@ -1,7 +1,7 @@
 // server/routes/userRoutes.js
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User');
+const {User, Book} = require('../models/Models');
 
 
 // Routes
@@ -33,6 +33,7 @@ router.post('/login', async(req, res) => {
       const {email, password} = req.body;
       const user = await User.findOne
         ({ email });
+        console.log(user);
         if (!user) {
             return res.status(400).json({ message: 'Invalid credentials' });
         }
