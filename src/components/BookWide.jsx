@@ -1,20 +1,27 @@
 import Button from "@components/Button";
+import axios from "axios";
 
-function BookWide(){
-    const book = {
-        title: "Book",
-        author: "Author",
-        description: "This is a dummy book ahahha This is a dummy book ahahha This is a dummy book ahahha",
-        coverImage: "https://letsenhance.io/static/66c1b6abf8f7cf44c19185254d7adb0c/28ebd/AiArtBefore.jpg",
-    };
+function BookWide({ book, setUserBooks }) {
+
+
+
+    const handleDeletion = async () => {
+        try {
+            const response = await axios.delete(`/book/delete?id=${book.id}`);
+            console.log(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+
 
     return (
         <div className="flex bg-white rounded-[10px] overflow-hidden shadow-lg p-2 w-full h-[120px] items-center justify-between">
             <div className="flex gap-x-5 ml-2" >
                 <img
                     className="w-[75px] h-[99px] rounded-[5px]"
-                    src={book.coverImage}
-                    alt="Sunset in the mountains"
+                    src={`/${book.cover}`}
                 />
                 <div className="py-3 w-[20%]">
                     <h1 className="text-lg font-semibold ">{book.title}</h1>
@@ -40,7 +47,7 @@ function BookWide(){
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9l-3 3v-2.828l9.586-9.586z" />
                     </svg>
                 </button>
-                <button className="bg-white hover:bg-[#ff6464] ring-[#ff6464]  ring-1 hover:text-white text-[#ff6464] font-medium text-sm rounded-full p-3 ">
+                <button onClick={handleDeletion} className="bg-white hover:bg-[#ff6464] ring-[#ff6464]  ring-1 hover:text-white text-[#ff6464] font-medium text-sm rounded-full p-3 ">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                     </svg>

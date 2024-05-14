@@ -2,6 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const { User, Book } = require("../models/Models");
+const mongoose = require("mongoose");
 
 // Routes
 //signup route
@@ -80,16 +81,34 @@ router.get("/book", async (req, res) => {
   }
 });
 
+
+updateUserBooks = async (userId, bookId) => {
+  try {
+    await mongoose.model('User').updateOne(
+      { _id: userId },
+      { $push: { books: bookId } }
+    );
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 //upload book, we also need a user here to associate the book with
 router.post("/upload/book", async (req, res) => {
   try {
     let {user, book} = req.body;
+    console.log(user);
+    console.log(book);
     const lastBook = await Book.find().sort({ id: -1 }).limit(1);
-    book.id = lastBook[0].id + 1;
-    book = new Book(book);
+    if (lastBook.length === 0) {
+      book.id = 1;
+    } else
+    {
+      book.id = lastBook[0].id + 1;
+    }
+    book = new Book({...book, pages:0, published: new Date(), edition: '', description: '', about_author: ''});
     await book.save();
-    user.books.push(book);
-    await user.save();
+    updateUserBooks(user._id, book._id);
     res.json(book);
   } catch (error) {
     console.error(error);
@@ -106,6 +125,7 @@ router.delete("/book/delete", async (req, res) => {
       return res.status(404).json({ message: "Book not found" });
     }
     res.json({ message: "Book deleted" });
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });
