@@ -1,5 +1,6 @@
 import Button from "@components/Button";
 import axios from "axios";
+import {toast} from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 function BookWide({ book, setUserBooks }) {
@@ -10,9 +11,12 @@ function BookWide({ book, setUserBooks }) {
     const handleDeletion = async () => {
         try {
             const response = await axios.delete(`/book/delete?id=${book.id}`);
+            setUserBooks((prev) => prev.filter((b) => b.id !== book.id));
             console.log(response.data);
+            toast.success("Book deleted successfully.");
         } catch (error) {
             console.error(error);
+            toast.error(error.response.data.message);
         }
     }
 

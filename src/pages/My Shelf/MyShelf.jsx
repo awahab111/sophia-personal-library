@@ -6,6 +6,7 @@ import AddBook from "./addBookForm";
 import { useUserStore } from "@/components/zuStore";
 import axios from "axios";
 
+
 function MyShelf() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [showForm, setShowForm] = useState(false);
@@ -25,6 +26,26 @@ function MyShelf() {
     }
   };
 
+  const getBookCovers = async () => {
+    try {
+      console.log("wtf");
+      for (let i = 0; i < userBooks.length; i++) {
+        //request backend using axois
+        const file = `${userBooks[i].cover}`;
+        const response = await axios.get("/pdf/cover", {file: file});
+        console.log(response.data);
+        const {cover} = response.data;
+        setUserBooks((prev) => {
+          const newBooks = [...prev];
+          newBooks[i].cover = cover;
+          return newBooks;
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -33,6 +54,7 @@ function MyShelf() {
     window.addEventListener("resize", handleResize);
 
     getUserBooks();
+    getBookCovers();
 
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -82,15 +104,19 @@ function MyShelf() {
                 />
               </svg>
             </button>
-            <AddBook />
+            <AddBook setUserBooks={setUserBooks} />
           </div>
         </div>
-      )}
+      )}  
 
-      <div className="flex flex-col gap-y-8">
-        {userBooks.map((book) => (
-          <BookWide key={book._id} book={book} setUserBooks={getUserBooks} />
-        ))}
+      <div className={`flex flex-col gap-y-8 ${userBooks.length == 0 ? "justify-center items-center h-[50vh]": ""}`}>
+        {userBooks.length > 0 ? (
+          userBooks.map((book) => (
+            <BookWide key={book._id} book={book} setUserBooks={setUserBooks} />
+          ))
+        ) : (
+          <div className="text-xl">No books. 😞</div>
+        )}
       </div>
     </MainPage>
   );

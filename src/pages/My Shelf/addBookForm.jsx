@@ -5,8 +5,7 @@ import axios from 'axios';
 import { useUserStore } from '@/components/zuStore';
 import { toast } from 'react-hot-toast';
 
-
-function AddBook(){
+function AddBook({setUserBooks}) {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
 
@@ -26,7 +25,7 @@ function AddBook(){
         e.preventDefault();
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData.entries());
-        data.cover = file.path;
+        data.path = file.path;
 
         const user = useUserStore.getState().user;
         const obj = {user: user, book: data}
@@ -34,12 +33,13 @@ function AddBook(){
         axios.post('/upload/book', obj)
             .then((res) => {
                 console.log(res.data);
+                const new_book = res.data;
+                setUserBooks((prev) => [...prev, new_book]);
                 toast.success("Book added successfully."); 
             })
             .catch((error) => {
                 console.error(error);
                 toast.error(error.response.data.message);
-                
             });
     };
 
