@@ -1,8 +1,10 @@
 import Button from "@components/Button";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function BookWide({ book, setUserBooks }) {
 
+    const navigate = useNavigate();
 
 
     const handleDeletion = async () => {
@@ -14,10 +16,27 @@ function BookWide({ book, setUserBooks }) {
         }
     }
 
+    const handleRead = async () => {
+        try {
+            console.log(book);
+            navigate(`/read/${book.cover}`);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const ViewBookInformation = async () => {
+        try {
+            console.log(book);
+            navigate(`/book/${book}`);
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
 
     return (
-        <div className="flex bg-white rounded-[10px] overflow-hidden shadow-lg p-2 w-full h-[120px] items-center justify-between">
+        <div className="flex bg-white rounded-[10px] overflow-hidden shadow-lg p-2 w-full h-[120px] items-center justify-between cursor-pointer hover:shadow-2xl duration-300">
             <div className="flex gap-x-5 ml-2" >
                 <img
                     className="w-[75px] h-[99px] rounded-[5px]"
@@ -37,7 +56,7 @@ function BookWide({ book, setUserBooks }) {
             </div>
             {/* New button made here */}
             <div className="flex gap-x-2 items-center justify-center mx-1 lg:w-[11%]">
-                <button className="bg-white hover:bg-[#f89f76] ring-[#f89f76] ring-1 hover:text-white text-[#f89f76] font-medium text-sm rounded-full p-3 ">
+                <button onClick={handleRead} className="bg-white hover:bg-[#f89f76] ring-[#f89f76] ring-1 hover:text-white text-[#f89f76] font-medium text-sm rounded-full p-3 ">
                 <svg class="w-4 h-4 hover:text-white " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.03v13m0-13c-2.819-.831-4.715-1.076-8.029-1.023A.99.99 0 0 0 3 6v11c0 .563.466 1.014 1.03 1.007 3.122-.043 5.018.212 7.97 1.023m0-13c2.819-.831 4.715-1.076 8.029-1.023A.99.99 0 0 1 21 6v11c0 .563-.466 1.014-1.03 1.007-3.122-.043-5.018.212-7.97 1.023"/>
                 </svg>
