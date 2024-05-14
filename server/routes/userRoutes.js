@@ -3,6 +3,9 @@ const express = require("express");
 const router = express.Router();
 const { User, Book } = require("../models/Models");
 const mongoose = require("mongoose");
+const { Poppler } = require("node-poppler");
+const fs = require('fs');
+const path = require('path');
 
 // Routes
 //signup route
@@ -106,7 +109,34 @@ router.post("/upload/book", async (req, res) => {
     {
       book.id = lastBook[0].id + 1;
     }
-    book = new Book({...book, pages:0, published: new Date(), edition: '', description: '', about_author: ''});
+
+    const filename = book.path.split(".")[0];
+    const outputFile = `../public/${filename}`;
+    const completeImgPath = `../public/${filename}.pdf`;
+    await convertPdfToPng(completeImgPath, outputFile);
+
+    // Find and rename file
+    const directoryPath = '../public';
+    const regex = new RegExp(`^${filename}-`);
+
+    fs.readdir(directoryPath, (err, files) => {
+      if (err) throw err;
+
+      files.forEach(file => {
+        if (regex.test(file)) {
+          const oldFilePath = path.join(directoryPath, file);
+          const newFilePath = path.join(directoryPath, `${filename}.png`);
+
+          fs.rename(oldFilePath, newFilePath, (err) => {
+            if (err) throw err;
+            console.log('File Renamed!');
+          });
+        }
+      });
+    });
+
+    //
+    book = new Book({...book, pages:0, published: new Date(), edition: '', description: '', about_author: '', cover: `${filename}.png`});
     await book.save();
     updateUserBooks(user._id, book._id);
     res.json(book);
@@ -169,5 +199,26 @@ router.delete("/user/delete/:email", async (req, res) => {
   }
 }
 );
+
+
+//cover image of pdf
+async function convertPdfToPng(file, outputFile) {
+  const poppler = new Poppler();
+  const options = {
+      firstPageToConvert: 1,
+      lastPageToConvert: 1,
+      pngFile: true,
+  };
+
+  try {
+      const res = await poppler.pdfToCairo(file, outputFile, options);
+      console.log(res);
+      return res;
+  } catch (error) {
+      console.error(error);
+      throw error;
+  }
+}
+
 
 module.exports = router;
