@@ -22,6 +22,7 @@
     "react-fullscreen-loading": "^0.0.4",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.2.1",
+    "react-modal": "^3.16.1",
     "react-router-dom": "^6.23.0",
     "zustand": "^4.5.2"
   },

@@ -2,7 +2,8 @@ import Signup from '@pages/Signup.jsx'
 import Login from '@pages/Login.jsx'
 import Welcome from '@/pages/Welcome/Welcome.jsx'
 import MyShelf from '@/pages/My Shelf/MyShelf.jsx'
-import ReadView from './pages/Read/ReadView'
+import ReadView from '@pages/Read/ReadView'
+import BookInformation from '@pages/Book Information/BookInformation'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import { Toaster } from 'react-hot-toast';
 import axios from 'axios';
@@ -23,7 +24,9 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path='/main' element= {<Welcome />} />
           <Route path='/myshelf' element= {<MyShelf />} />
-          <Route path='/read' element= {<ReadView />} />
+          <Route path='/read/:bookname' element= {<ReadView />} />
+          <Route path='/book/:book' element= {<BookInformation />} />
+
       </Routes>
     </BrowserRouter>
 
