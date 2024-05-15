@@ -15,7 +15,7 @@ function Timer() {
     } else if (!isRunning && seconds !== 0) {
       clearInterval(interval);
     } else if (seconds === 0) {
-      toast.success("Time's up!");
+      // toast.success("Time's up!");
     }
     return () => clearInterval(interval);
   }, [isRunning, seconds]);
