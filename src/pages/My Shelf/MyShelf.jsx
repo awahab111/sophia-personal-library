@@ -28,7 +28,6 @@ function MyShelf() {
 
   const getBookCovers = async () => {
     try {
-      console.log("wtf");
       for (let i = 0; i < userBooks.length; i++) {
         //request backend using axois
         const file = `${userBooks[i].cover}`;

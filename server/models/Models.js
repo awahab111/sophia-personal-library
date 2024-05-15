@@ -22,7 +22,8 @@ const bookSchema = new mongoose.Schema({
   edition: String,
   description: String,
   about_author: String,
-  cover: String
+  cover: String,
+  path: String
 });
 
 
