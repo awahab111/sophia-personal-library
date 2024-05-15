@@ -38,23 +38,24 @@ function BookWide({ book, setUserBooks }) {
 
   return (
     <div
-      // onClick={ViewBookInformation}
-      className="flex bg-white rounded-[10px] overflow-hidden shadow-lg p-2 w-full h-[120px] items-center justify-between cursor-pointer hover:shadow-2xl duration-300"
+      className="flex bg-white rounded-[10px] overflow-hidden shadow-lg p-2 w-full h-[150px] items-center justify-between hover:shadow-2xl duration-300"
     >
-      <div className="flex gap-x-5 ml-2">
-        <img
-          className="w-[75px] h-[99px] rounded-[5px]"
-          src={`/${book.cover}`}
-        />
-        <div className="py-3 w-[20%]">
-          <h1 className="text-lg font-semibold ">{book.title}</h1>
-          <p className="text-gray-500 text-sm mt-4 font-[350]">{book.author}</p>
+      <div className="flex w-[50%] cursor-pointer rounded-3xl" onClick={ViewBookInformation} >
+        <div className="flex gap-x-5 ml-2">
+          <img
+            className="w-[85px] h-[115px] rounded-[5px]"
+            src={`/${book.cover}`}
+          />
+          <div className="py-3 w-[20%]">
+            <h1 className="text-lg font-semibold ">{book.title}</h1>
+            <p className="text-gray-500 text-sm mt-4 font-[350]">{book.author}</p>
+          </div>
         </div>
-      </div>
-      <div className="py-3 hidden lg:w-[60%] lg:block ">
-        <p className="text-gray-700 font-normal text-[15px]">
-          {book.description}
-        </p>
+        <div className="py-3 hidden lg:w-[60%] lg:block ">
+          <p className="text-gray-700 font-normal text-[15px]">
+            {book.description}
+          </p>
+        </div>
       </div>
       {/* New button made here */}
       <div className="flex gap-x-2 items-center justify-center mx-1 lg:w-[11%]">
