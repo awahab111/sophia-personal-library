@@ -23,7 +23,7 @@ function BookWide({ book, setUserBooks }) {
     const handleRead = async () => {
         try {
             console.log(book);
-            navigate(`/read/${book.cover}`);
+            navigate(`/read/${book.path}`);
         } catch (error) {
             console.error(error);
         }
@@ -40,7 +40,7 @@ function BookWide({ book, setUserBooks }) {
 
 
     return (
-        <div className="flex bg-white rounded-[10px] overflow-hidden shadow-lg p-2 w-full h-[120px] items-center justify-between cursor-pointer hover:shadow-2xl duration-300">
+        <div onClick={ViewBookInformation} className="flex bg-white rounded-[10px] overflow-hidden shadow-lg p-2 w-full h-[120px] items-center justify-between cursor-pointer hover:shadow-2xl duration-300">
             <div className="flex gap-x-5 ml-2" >
                 <img
                     className="w-[75px] h-[99px] rounded-[5px]"
