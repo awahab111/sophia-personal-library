@@ -85,7 +85,7 @@ function Welcome() {
       <h1 className=" font-semibold text-[30px] text-gray-700 font-mono ml-1 ">
         Welcome Back Abdul Wahab
       </h1>
-      <h2 className="text-[20px] ml-2 "> Currently Reading</h2>
+      <h2 className="text-[20px] ml-2 ">Recommended Books</h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex lg:flex-wrap sm:gap-x-5 gap-y-4 mx-1">
         {books.map((book, index) => {
           return <BookCard key={index} book={book} />;

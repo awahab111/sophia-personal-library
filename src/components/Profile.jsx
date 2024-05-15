@@ -4,18 +4,25 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 function Profile() {
-  const profile = {
-    pp: "https://letsenhance.io/static/66c1b6abf8f7cf44c19185254d7adb0c/28ebd/AiArtBefore.jpg",
-  };
 
+  
   const navigate = useNavigate();
   const user = useUserStore((state) => state.user);
+
+  const profile = {
+    pp: `https://api.dicebear.com/8.x/pixel-art/svg?seed=${user.fullname}`,
+  };
 
   const handleLogout = () => {
     console.log("Logging out");
     useUserStore.setState({ user: null });
     toast.success("Logged out successfully");
     navigate("/");
+  }
+
+  const handleProfile = () => {
+    console.log("Profile clicked");
+    navigate(`/profile`);
   }
 
 
@@ -32,7 +39,7 @@ function Profile() {
         {/* <i className="fas fa-caret-down my-auto mx-auto text-[#F76B56]"></i> */}
         <Dropdown label="" inline>
           <Dropdown.Item className="hover:bg-[#AEBCDA]">Dashboard</Dropdown.Item>
-          <Dropdown.Item className="hover:bg-[#AEBCDA]">Profile</Dropdown.Item>
+          <Dropdown.Item onClick={handleProfile} className="hover:bg-[#AEBCDA]">Profile</Dropdown.Item>
           <Dropdown.Item className="hover:bg-[#AEBCDA]">Settings</Dropdown.Item>
           <Dropdown.Item className="hover:bg-[#AEBCDA]" onClick={handleLogout}>Log Out</Dropdown.Item>
         </Dropdown>
