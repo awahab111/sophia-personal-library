@@ -28,7 +28,9 @@ function Navigation(){
       
       <Link to='/main'><img className="mx-4 lg:mx-auto my-auto w-[32px] lg:w-[50%] lg:my-10" src={logo} alt="Logo" /></Link>
       <ul className={`flex flex-row items-center justify-center lg:flex-col mx-auto  lg:space-x-0`}>
-        <li><i className={`fas fa-home iconStyle`}></i></li>
+        <Link to='/main'>
+          <li><i className={`fas fa-home iconStyle`}></i></li>
+        </Link>
         <li><Link to='/myshelf'><i className={`fas fa-navicon iconStyle`}></i> </Link></li>
         <li><i className={`fas fa-envelope iconStyle`}></i></li>
       </ul>

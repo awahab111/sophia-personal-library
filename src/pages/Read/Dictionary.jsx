@@ -19,7 +19,7 @@ function Dictionary() {
   }
 
 return (
-    <div className='flex flex-col gap-5 lg:gap-20 p-5 '>
+    <div className='flex flex-col gap-2 lg:gap-2 p-5 '>
         <div className='flex items-center justify-center h-[25%] w-full p-1'>
             <input type="text" value={word} onChange={handleInputChange} className='p-2 rounded-l-lg w-[85%] h-[90%] shadow-xl' placeholder="Enter a word" />
             <button className='flex p-[10px] rounded-r-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-300 shadow-xl ' onClick={handleSearchClick}>

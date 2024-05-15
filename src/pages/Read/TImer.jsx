@@ -37,8 +37,8 @@ function Timer() {
   const remainingSeconds = (seconds % 60).toString().padStart(2, '0');
 
   return (
-    <div className='flex flex-col items-center justify-center gap-5 lg:gap-12 h-[50%] w-[100%] ' >
-      <div className='flex h-[20%] ' >
+    <div className='flex flex-col items-center justify-center lg:gap-2 h-[50%] w-[100%]' >
+      <div className='h-[20%] ' >
           <select value={selectedTime} onChange={handleTimeChange} className='p-2 rounded-md shadow-lg'>
             <option value="0">Select time</option>
             <option value="300">5 minutes</option>
@@ -47,7 +47,7 @@ function Timer() {
             <option value="3000">50 minutes</option>
           </select>
       </div>
-      <div className='flex text-white h-[70%] font-bold font-digital text-[30px] lg:text-[72px]'>
+      <div className='text-white h-[70%] font-bold font-digital text-[30px] lg:text-[72px]'>
         {minutes} : {remainingSeconds}
       </div>
       <div className='flex gap-4'>

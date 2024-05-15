@@ -29,13 +29,13 @@ export default function ReadView() {
               </div>
               <div className="flex flex-col gap-y-4 w-[31%] ">
                 <div className="bg-[#f89f76] h-[49%] rounded-[25px] shadow-lg sho ">
-                  <h1 className='text-center text-white font-bold text-[45px] p-4' >
+                  <h1 className='text-center text-white font-bold text-[30px] p-4' >
                     Timer
                   </h1>
                   <div className=""><Timer/></div>
                 </div>
                 <div className="bg-[#AEBCDA] h-[49%] rounded-[25px]">
-                <h1 className='text-center text-white font-bold text-[45px] p-4' >
+                <h1 className='text-center text-white font-bold text-[30px] p-4' >
                     Dictionary
                   </h1>
                   <Dictionary/>
